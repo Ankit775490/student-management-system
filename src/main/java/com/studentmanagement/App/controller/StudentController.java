@@ -94,4 +94,14 @@ public class StudentController {
     public ResponseEntity<List<Student>> getStudentAgeLessThan(@PathVariable Integer age){
         return ResponseEntity.ok(service.getStudentAgeLessThan(age));
     }
+
+
+    @GetMapping("/query/name/{name}")
+    public ResponseEntity<List<Student>> getStudentByNameUsingQuery(
+            @PathVariable String name){
+
+        return ResponseEntity.ok(
+                service.getStudentByNameUsingQuery(name));
+
+    }
 }

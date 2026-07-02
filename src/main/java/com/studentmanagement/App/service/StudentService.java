@@ -68,4 +68,11 @@ public class StudentService {
     public List<Student> getStudentAgeLessThan(@PathVariable Integer age){
         return repository.findByAgeLessThan(age);
     }
+
+
+    public List<Student> getStudentByNameUsingQuery(String name){
+
+        return repository.getStudentByName(name);
+
+    }
 }
