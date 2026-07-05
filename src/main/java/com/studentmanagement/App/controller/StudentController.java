@@ -3,6 +3,8 @@ package com.studentmanagement.App.controller;
 import com.studentmanagement.App.Entity.Student;
 import com.studentmanagement.App.service.StudentService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -103,5 +105,33 @@ public class StudentController {
         return ResponseEntity.ok(
                 service.getStudentByNameUsingQuery(name));
 
+    }
+    @GetMapping("/Page")
+    public ResponseEntity<Page<Student>> GetAllStudentByPage(Pageable pageable){
+        return ResponseEntity.ok(service.GetAllStudentByPage(pageable));
+    }
+
+    @GetMapping("/sort")
+    public ResponseEntity<List<Student>> getAllStudentsSorted(
+            @RequestParam String field){
+
+        return ResponseEntity.ok(
+                service.getAllStudentsSorted(field));
+
+    }
+
+    @GetMapping("/page")
+    public ResponseEntity<Page<Student>> getStudents(
+
+            @RequestParam int page,
+            @RequestParam int size,
+            @RequestParam String field) {
+
+        return ResponseEntity.ok(
+
+                service.getStudentsWithPaginationAndSorting(
+                        page,
+                        size,
+                        field));
     }
 }

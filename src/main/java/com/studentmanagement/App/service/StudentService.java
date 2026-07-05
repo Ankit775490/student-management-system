@@ -2,8 +2,13 @@ package com.studentmanagement.App.service;
 
 import com.studentmanagement.App.Entity.Student;
 import com.studentmanagement.App.Exception.StudentNotFoundException;
+import com.studentmanagement.App.dto.StudentDTO;
 import com.studentmanagement.App.repository.StudentRepository;
 import org.hibernate.collection.internal.StandardIdentifierBagSemantics;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -75,4 +80,27 @@ public class StudentService {
         return repository.getStudentByName(name);
 
     }
+
+    public Page<Student> GetAllStudentByPage(Pageable pageable){
+        return repository.findAll(pageable);
+    }
+
+    public List<Student> getAllStudentsSorted(String field) {
+
+        return repository.findAll(Sort.by(field));
+
+    }
+
+    public Page<Student> getStudentsWithPaginationAndSorting(
+            int page,
+            int size,
+            String field) {
+
+        Pageable pageable =
+                PageRequest.of(page, size, Sort.by(field));
+
+        return repository.findAll(pageable);
+    }
+
+
 }
