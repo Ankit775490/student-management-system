@@ -40,7 +40,7 @@
 - ✅ Bean Validation (`@Valid`, `@NotBlank`, `@NotNull`)
 - ⚠️ Global Exception Handling (`@ControllerAdvice`)
 - pagination
-
+- sorting 
 ---
 
 # 🛠️ Tech Stack
